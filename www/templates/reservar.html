@@ -1,12 +1,12 @@
 <ion-view style="" class=" " id="page2" title="Reservar">
-    <ion-content class="has-header" scroll="false" padding="true">
+    <ion-content class="has-header" scroll="false" padding="true" ng-controller="reservarCtrl" >
         <h5 class=" " style="color: rgb(0, 0, 0);" id="reservar-heading1">Semana do dia 00/00 a 00/00:</h5>
         <div class=" button-bar " id="reservar-button-bar1">
-            <button class=" button button-stable  button-block button-outline " id="reservar-button9">S</button>
-            <button class=" button button-stable  button-block button-outline " id="reservar-button2">T</button>
-            <button class=" button button-stable  button-block button-outline " id="reservar-button4">Q</button>
-            <button class=" button button-stable  button-block button-outline " id="reservar-button5">Q</button>
-            <button class=" button button-stable  button-block button-outline " id="reservar-button6">S</button>
+            <button ng-click="selectDay(0)" class=" button {{dclass[0]}}  button-block" id="reservar-button-seg">S</button>
+            <button ng-click="selectDay(1)" class=" button {{dclass[1]}}  button-block" id="reservar-button-ter">T</button>
+            <button ng-click="selectDay(2)" class=" button {{dclass[2]}}  button-block" id="reservar-button-quar">Q</button>
+            <button ng-click="selectDay(3)" class=" button {{dclass[3]}}  button-block" id="reservar-button-quin">Q</button>
+            <button ng-click="selectDay(4)" class=" button {{dclass[4]}}  button-block" id="reservar-button-sex">S</button>
         </div>
         <form name="ReservaForm" class="list " id="reservar-form2" novalidate>
             <div style="width: 300px; height: 37px;" class="spacer"></div>
@@ -18,11 +18,11 @@
                 <span class="input-label">Número do cartão</span>
                 <input placeholder="****" type="number" required>
             </label>
-            <div>{{ReservaForm.requiredCpf.$valid}}</div>
+            <!--<div>CPF:{{ReservaForm.requiredCpf.$valid}} {{dclass}}</div>-->
             <ion-toggle class=" " name="Lembrar" id="reservar-toggle1" toggle-class="toggle-positive">Lembrar</ion-toggle>
             <div style="width: 300px; height: 37px;" class="spacer"></div>
         </form>
-        <a class=" button button-positive  button-block button-outline " style="font-weight:500;" id="reservar-button8" ui-sref="{{ReservaForm.requiredCpf.$valid}} && tabsController.envio">Reservar</a>
+        <a class=" button button-positive  button-block  button-outline " style="font-weight:500;" id="reservar-button-submit" ui-sref="tabsController.envio">Reservar</a>
         <p class=" " style="color:#FF0000;" id="reservar-markdown1">Você poderá reservar em
             <strong>0h33m16s</strong>
         </p>
