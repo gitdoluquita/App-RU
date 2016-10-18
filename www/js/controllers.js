@@ -9,7 +9,6 @@ function ($scope, $stateParams) {
       else
         $scope.dclass[i] = "button-stable button-outline";
     };
-
 }])
 
 .controller('pendentesCtrl', ['$scope', '$stateParams', // TIP: Access Route Parameters for your page via $stateParams.parameterName

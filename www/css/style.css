@@ -1,9 +1,6 @@
-.ng-invalid.ng-dirty{
-  border-color: #FA787E;
-  border: 1;
+.cpf-error{
+  background-color: #FCA0A0;
 }
-
-.ng-valid.ng-dirty{
-  border-color: #78FA89;
-  border: 1;
+.cpf-right{
+  background-color: #97FF82;
 }
