@@ -6,6 +6,8 @@
   },
   "dependencies": {
     "ng-cpf-cnpj": "^0.0.5",
-    "angular-ui-utils": "^3.0.0"
+    "angular-ui-utils": "^3.0.0",
+    "angular-moment": "^1.0.0",
+    "angular-momentjs": "^0.2.2"
   }
 }
