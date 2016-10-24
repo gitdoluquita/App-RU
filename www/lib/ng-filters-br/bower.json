@@ -1,0 +1,25 @@
+{
+  "name": "ng-filters-br",
+  "version": "1.0.2",
+  "homepage": "https://github.com/igorcosta/ng-filters-br",
+  "authors": [
+    "igorcosta <igorcosta@riacycle.com>"
+  ],
+  "description": "filtros para formatacao de dados brasileiros",
+  "main": "dist/ng-filters-br.min.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "ng-filters-br",
+    "angular-filters",
+    "ng-modules"
+  ],
+  "license": "Apache License 2.0",
+  "ignore": [
+        "**/*"
+  ],
+  "dependencies": {
+    "angular": "~1.2.19"
+  }
+}
