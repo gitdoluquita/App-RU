@@ -2,11 +2,11 @@
     <ion-content class="has-header" scroll="false" padding="true" ng-controller="reservarCtrl" >
         <h5 class=" " style="color: rgb(0, 0, 0);" id="reservar-heading1">Semana do dia {{weekFirst| date:'dd/MM'}} a {{weekLast| date:'dd/MM'}}:</h5>
         <div class=" button-bar " id="reservar-button-bar1">
-            <button ng-click="selectDay(0)" class=" button {{dclass[0]}}  button-block" id="reservar-button-seg">S</button>
-            <button ng-click="selectDay(1)" class=" button {{dclass[1]}}  button-block" id="reservar-button-ter">T</button>
-            <button ng-click="selectDay(2)" class=" button {{dclass[2]}}  button-block" id="reservar-button-quar">Q</button>
-            <button ng-click="selectDay(3)" class=" button {{dclass[3]}}  button-block" id="reservar-button-quin">Q</button>
-            <button ng-click="selectDay(4)" class=" button {{dclass[4]}}  button-block" id="reservar-button-sex">S</button>
+            <button ng-click="selectDay(0)" class=" button {{weekDays[0].dClass}}  button-block" id="reservar-button-seg">S</button>
+            <button ng-click="selectDay(1)" class=" button {{weekDays[1].dClass}}  button-block" id="reservar-button-ter">T</button>
+            <button ng-click="selectDay(2)" class=" button {{weekDays[2].dClass}}  button-block" id="reservar-button-quar">Q</button>
+            <button ng-click="selectDay(3)" class=" button {{weekDays[3].dClass}}  button-block" id="reservar-button-quin">Q</button>
+            <button ng-click="selectDay(4)" class=" button {{weekDays[4].dClass}}  button-block" id="reservar-button-sex">S</button>
         </div>
         <form name="ReservaForm" class="list " id="reservar-form2" novalidate>
             <div style="width: 300px; height: 37px;" class="spacer"></div>
@@ -18,7 +18,7 @@
                 <span class="input-label">Número do cartão</span>
                 <input placeholder="****" type="number" ng-model="numCartao" required>
             </label>
-            <!--<div>CPF:{{ReservaForm.requiredCpf.$valid}} {{dclass}}</div>-->
+            <!--<div>CPF:{{ReservaForm.requiredCpf.$valid}} {{weekDays}}</div>-->
             <ion-toggle class=" " name="Lembrar" id="reservar-toggle1" toggle-class="toggle-positive">Lembrar</ion-toggle>
             <div style="width: 300px; height: 37px;" class="spacer"></div>
         </form>
