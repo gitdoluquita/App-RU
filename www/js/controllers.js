@@ -1,14 +1,20 @@
 
 angular.module('app.controllers', [])
 
-.controller('reservarCtrl', ['$scope', '$stateParams','$http',// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $http) {
+.controller('reservarCtrl', ['$scope', '$stateParams','$http', '$ionicPopup',// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams, $http, $ionicPopup) {
 $scope.today= new Date();
 $scope.today.setDate($scope.today.getDate($scope.today));
 $scope.weekFirst= new Date();
 $scope.weekLast= new Date();
 $scope.weekDays= [{},{},{},{},{}];
 var DAY_IN_MILIS= 86400000;
+
+/*if (window.localstorage.getItem("requiredCpf") !== null && window.localstorage.getItem("numCartao") !== null) {
+    $scope.requiredCpf=window.localstorage.getItem("requiredCpf");
+    $scope.numCartao=window.localstorage.getItem("numCartao");
+    $scope.buttonLembrar= true;
+  }*/
 
 if($scope.today.getDay()<4||($scope.today.getDay()===4&&$scope.today.getHours()<=16))
   $scope.weekFirst.setTime($scope.today.getTime()+(8-$scope.today.getDay())*DAY_IN_MILIS);
@@ -20,7 +26,7 @@ else
  $scope.weekFirst.setSeconds(0);
  $scope.weekLast.setTime($scope.weekFirst.getTime()+(4*DAY_IN_MILIS));
  $scope.timeLeft=($scope.weekFirst.getTime()-$scope.today.getTime()-(7*DAY_IN_MILIS))/1000;
- //$scope.timeLeft=30;
+ $scope.timeLeft=15;
  for(i=0;i<5;i++){
    $scope.weekDays[i].date=new Date();
    $scope.weekDays[i].date.setTime($scope.weekFirst.getTime()+i*DAY_IN_MILIS);
@@ -41,8 +47,17 @@ else
         $scope.weekDays[i].dStr='';
     }
     };
-
+    $scope.updateTimeLeft= function(){
+      $scope.timeLeft= -1;
+      console.log($scope.timeLeft);
+    }
     $scope.doLogin=function(){
+      /*
+      if ($scope.buttonLembrar){
+        window.localstorage.setItem ("requiredCpf",$scope.requiredCpf);
+        window.localStorage.setItem("numCartao", $scope.numCartao);
+      }
+      */
       var txtCpf= $scope.requiredCpf.substr(0,3)+'.'+$scope.requiredCpf.substr(3,3)+
                   '.'+$scope.requiredCpf.substr(6,3)+'-'+$scope.requiredCpf.substr(9,2);
       console.log("CPF: "+txtCpf + "Nº do Cartão: "+$scope.numCartao);
@@ -61,7 +76,13 @@ else
                     '&txt_cpf=' + txtCpf
 
       }).then(function mySucces(response) {
-          console.log(response.data);
+          let temp = document.implementation.createHTMLDocument();
+          temp.body.innerHTML = response.data;
+          var popupText= temp.body.innerText.substr(temp.body.innerText.indexOf('×')+1);
+          $ionicPopup.alert({title: 'Resultado',
+                            subTitle: popupText,
+                          });
+          console.log(temp.body.innerText);
       }, function myError(response) {
           console.log("Deu ruim!")
           });
