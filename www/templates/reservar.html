@@ -22,9 +22,11 @@
             <ion-toggle class=" " name="Lembrar" id="reservar-toggle1" toggle-class="toggle-positive" ng-model="buttonLembrar">Lembrar</ion-toggle>
             <div style="width: 300px; height: 37px;" class="spacer"></div>
         </form>
-        <a class=" button button-positive  button-block" style="font-weight:500;" id="reservar-button-submit" ng-disabled="timeLeft>0" ng-click="doLogin()">Reservar</a>
+    <!--    <a class=" button button-positive  button-block" style="font-weight:500;" id="reservar-button-submit" ng-disabled="timeLeft>0" ng-click="doLogin()">Reservar</a>
+-->
+        <button ladda="loading" class=" button button-positive  button-block" style="font-weight:500;" id="reservar-button-submit" ng-disabled="timeLeft>0" ng-click="doLogin()">Reservar</button>
         <p class=" " ng-hide="timeLeft<=0" style="color:#FF0000;" id="reservar-markdown1">Você poderá reservar em
-            <strong timer interval="1000" finish-callback="updateTimeLeft()"countdown="timeLeft">{{days}} dia{{daysS}}, {{hours}} hora{{hoursS}}, {{minutes}} minuto{{minutesS}}, {{seconds}} segundo{{secondsS}}.</strong>
+            <strong timer interval="1000" finish-callback="doLogin()"countdown="timeLeft">{{days}} dia{{daysS}}, {{hours}} hora{{hoursS}}, {{minutes}} minuto{{minutesS}}, {{seconds}} segundo{{secondsS}}.</strong>
         </p>
     </ion-content>
 </ion-view>

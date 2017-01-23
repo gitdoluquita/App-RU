@@ -1,44 +1,28 @@
 <ion-view style="" class=" " id="page3" title="Pendentes">
-  <ion-content class="has-header" padding="true">
-  <ion-list>
-    <ion-item>
-      <div class="row">
-        <div class="col col-80">
-          <strong>30/08 - Segunda Feira</strong>
-        </div>
-        <div class="col col-20">
-          <strong>3,00<strong>
-        </div>
-      </div>
-    </ion-item>
-    <ion-item>
-      <div class="row">
-        <div class="col col-80">
-          <strong>31/08 - Terca Feira</strong>
-        </div>
-        <div class="col col-20">
-          <strong>3,00<strong>
-        </div>
-      </div>
-    </ion-item>
-  </ion-list>
-
-
-
-  </ion-content>
-  <ion-footer-bar class="bar-stable">
-    <div class="row">
-      <div class="col col-90">
-        <strong>Exibir Pagas</strong>
-      </div>
-      <div class="col col-10">
-        <label class="toggle toggle-positive">
-          <input type="checkbox">
-          <div class="track">
-            <div class="handle"></div>
-          </div>
+    <ion-content class="has-header" scroll="false" padding="true" ng-controller="pendentesCtrl" >
+      <div class="list list-inset">
+        <label class="item item-input">
+          <i class="icon ion-card placeholder-icon"></i>
+          <input type="text" ng-model="numCartao" ng-change="changeCartao()" placeholder="Número do Cartão" >
         </label>
       </div>
-    </div>
-  </ion-footer-bar>
+
+      <div class="list card" ng-if="existeRef" >
+        <div class="item" ng-repeat="ref in refeicoes">
+          <h2>{{ref.dia}}</h2>
+          <p>R${{ref.valor}}</p>
+        </div>
+      </div>
+      <div class="list card" ng-if="!existeRef">
+        <div class="item item-icon-left">
+          <i class="icon ion-alert"></i>
+          <h2>Não há reservas para mostrar</h2>
+        </div>
+        <div class="item item-body">
+    <p>
+      A sua reserva pode não ter sido efetuada com sucesso ou existe
+      um problema de conexão com o servidor.
+    </p>
+      </div>
+    </ion-content>
 </ion-view>
