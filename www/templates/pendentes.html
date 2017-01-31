@@ -1,4 +1,6 @@
-<ion-view style="" class=" " id="page3" title="Pendentes">
+<ion-view style="background-color: #2a3d54;" class=" " id="page3" title="Pendentes">
+  <ion-nav-bar class="bar-positive">
+  </ion-nav-bar>
     <ion-content class="has-header" scroll="false" padding="true" ng-controller="pendentesCtrl" >
       <div class="list list-inset">
         <label class="item item-input">
@@ -15,7 +17,7 @@
       </div>
       <div class="list card" ng-if="!existeRef">
         <div class="item item-icon-left">
-          <i class="icon ion-alert"></i>
+          <ion-spinner ng-if="loadPend"></ion-spinner>        <i class="icon ion-alert" ng-if="!loadPend"></i>
           <h2>Não há reservas para mostrar</h2>
         </div>
         <div class="item item-body">

@@ -35,7 +35,7 @@ else
  }
     $scope.selectDay = function(i){
       if ($scope.weekDays[i].dClass === "button-stable button-outline"){
-                $scope.weekDays[i].dClass = "button-positive";
+                $scope.weekDays[i].dClass = "button-balanced";
                 $scope.weekDays[i].dStr=($scope.weekDays[i].date.getDate()<10?'&txt_dias=0':'&txt_dias=')
                                           +$scope.weekDays[i].date.getDate()+'%2F'+
                                         ($scope.weekDays[i].date.getMonth()+1)+'%2F'+
@@ -50,6 +50,7 @@ else
     $scope.updateTimeLeft= function(){
       $scope.timeLeft= -1;
       console.log($scope.timeLeft);
+      $scope.$apply();
     }
     $scope.doLogin=function(){
       /*
@@ -80,14 +81,17 @@ else
           $scope.loading=false;
           let temp = document.implementation.createHTMLDocument();
           let ind;
+          let titulo= 'Resultado'
           temp.body.innerHTML = response.data;
-          if(temp.body.innerText.search('x')!=-1)
+          console.log(temp.body.innerText.search('x'));
+          if(temp.body.innerText.search('sucesso')==-1)
             ind=temp.body.innerText.indexOf('×')+1;
           else {
-            ind=temp.body.innerText.indexOf('Reserva');
+            ind=temp.body.innerText.indexOf('Sua');
+            titulo= temp.body.innerText.substring(temp.body.innerText.indexOf('Reserva'),ind-1);
           }
           var popupText= temp.body.innerText.substr(ind);
-          $ionicPopup.alert({title: 'Resultado',
+          $ionicPopup.alert({title: titulo,
                             subTitle: popupText,
                           });
           console.log(temp.body.innerText);
@@ -105,10 +109,12 @@ else
 .controller('pendentesCtrl', ['$scope', '$stateParams', '$http', // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams, $http) {
   $scope.existeRef= false;
+  $scope.loadPend=false;
   $scope.changeCartao= function(){
     $scope.refeicoes= [];
     $scope.existeRef= false;
-    if ($scope.numCartao.length>0)
+    $scope.loadPend= true;
+    if ($scope.numCartao.length>0&&$scope.numCartao!=='0')
     $http({
           method: 'POST',
           url: 'https://sistemas.fc.unesp.br/ru/reserva.pesquisar.action',
@@ -136,11 +142,15 @@ function ($scope, $stateParams, $http) {
           }
           console.log($scope.refeicoes);
           }
+          $scope.loadPend=false;
 
 
     }, function myError(response) {
-        console.log("Deu ruim!")
+        console.log("Deu ruim!");
+        $scope.loadPend=false;
         });
+      else
+      $scope.loadPend=false;
   }
 
 }])

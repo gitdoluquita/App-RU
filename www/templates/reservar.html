@@ -1,6 +1,8 @@
-<ion-view style="" class=" " id="page2" title="Reservar">
+<ion-view style="background-color: #2a3d54;" class=" " id="page2" title="Reservar">
+  <ion-nav-bar class="bar-positive">
+  </ion-nav-bar>
     <ion-content class="has-header" scroll="false" padding="true" ng-controller="reservarCtrl" >
-        <h5 class=" " style="color: rgb(0, 0, 0);" id="reservar-heading1">Semana do dia {{weekFirst| date:'dd/MM'}} a {{weekLast| date:'dd/MM'}}:</h5>
+        <h5 class=" " style="color: #ffffff" id="reservar-heading1">Semana do dia {{weekFirst| date:'dd/MM'}} a {{weekLast| date:'dd/MM'}}:</h5>
         <div class=" button-bar " id="reservar-button-bar1">
             <button ng-click="selectDay(0)" class=" button {{weekDays[0].dClass}}  button-block" id="reservar-button-seg">S</button>
             <button ng-click="selectDay(1)" class=" button {{weekDays[1].dClass}}  button-block" id="reservar-button-ter">T</button>
@@ -21,10 +23,10 @@
             <!--<div>CPF:{{ReservaForm.requiredCpf.$valid}} {{weekDays}}</div>-->
             <ion-toggle class=" " name="Lembrar" id="reservar-toggle1" toggle-class="toggle-positive" ng-model="buttonLembrar">Lembrar</ion-toggle>
             <div style="width: 300px; height: 37px;" class="spacer"></div>
+            <button ladda="loading" class=" button button-positive  button-block" style="font-weight:500;" id="reservar-button-submit" ng-disabled="timeLeft>0" ng-click="doLogin()">Reservar</button>
         </form>
     <!--    <a class=" button button-positive  button-block" style="font-weight:500;" id="reservar-button-submit" ng-disabled="timeLeft>0" ng-click="doLogin()">Reservar</a>
 -->
-        <button ladda="loading" class=" button button-positive  button-block" style="font-weight:500;" id="reservar-button-submit" ng-disabled="timeLeft>0" ng-click="doLogin()">Reservar</button>
         <p class=" " ng-hide="timeLeft<=0" style="color:#FF0000;" id="reservar-markdown1">Você poderá reservar em
             <strong timer interval="1000" finish-callback="updateTimeLeft()"countdown="timeLeft">{{days}} dia{{daysS}}, {{hours}} hora{{hoursS}}, {{minutes}} minuto{{minutesS}}, {{seconds}} segundo{{secondsS}}.</strong>
         </p>
