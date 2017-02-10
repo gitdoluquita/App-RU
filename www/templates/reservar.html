@@ -14,7 +14,7 @@
             <div style="width: 300px; height: 37px;" class="spacer"></div>
             <label id="reservar-input1" class="item item-input" ng-class="{'cpf-error':ReservaForm.requiredCpf.$invalid && ReservaForm.requiredCpf.$dirty, 'cpf-right':ReservaForm.requiredCpf.$valid && ReservaForm.requiredCpf.$dirty && !ReservaForm.requiredCpf.$touched }">
                 <span class="input-label">CPF</span>
-                <input placeholder="Somente números" type="text" name="requiredCpf" ng-model="requiredCpf" ng-cpf required>
+                <input placeholder="Somente números" type="number" name="requiredCpf" ng-model="requiredCpf" ng-cpf required>
             </label>
             <label id="reservar-input2" class="item item-input ">
                 <span class="input-label">Número do cartão</span>
@@ -27,7 +27,7 @@
         </form>
     <!--    <a class=" button button-positive  button-block" style="font-weight:500;" id="reservar-button-submit" ng-disabled="timeLeft>0" ng-click="doLogin()">Reservar</a>
 -->
-        <p class=" " ng-hide="timeLeft<=0" style="color:#FF0000;" id="reservar-markdown1">Você poderá reservar em
+        <p class=" " ng-hide="timeLeft<=0" style="color:#FFFFFF;" id="reservar-markdown1">Você poderá reservar em
             <strong timer interval="1000" finish-callback="updateTimeLeft()"countdown="timeLeft">{{days}} dia{{daysS}}, {{hours}} hora{{hoursS}}, {{minutes}} minuto{{minutesS}}, {{seconds}} segundo{{secondsS}}.</strong>
         </p>
     </ion-content>
