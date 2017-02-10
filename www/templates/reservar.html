@@ -28,7 +28,7 @@
     <!--    <a class=" button button-positive  button-block" style="font-weight:500;" id="reservar-button-submit" ng-disabled="timeLeft>0" ng-click="doLogin()">Reservar</a>
 -->
         <p class=" " ng-hide="timeLeft<=0" style="color:#FF0000;" id="reservar-markdown1">Você poderá reservar em
-            <strong timer interval="1000" finish-callback="doLogin()"countdown="timeLeft">{{days}} dia{{daysS}}, {{hours}} hora{{hoursS}}, {{minutes}} minuto{{minutesS}}, {{seconds}} segundo{{secondsS}}.</strong>
+            <strong timer interval="1000" finish-callback="updateTimeLeft()"countdown="timeLeft">{{days}} dia{{daysS}}, {{hours}} hora{{hoursS}}, {{minutes}} minuto{{minutesS}}, {{seconds}} segundo{{secondsS}}.</strong>
         </p>
     </ion-content>
 </ion-view>

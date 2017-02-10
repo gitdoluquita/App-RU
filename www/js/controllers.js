@@ -85,7 +85,7 @@ else
           temp.body.innerHTML = response.data;
           console.log(temp.body.innerText.search('x'));
           if(temp.body.innerText.search('sucesso')==-1)
-            ind=temp.body.innerText.indexOf('×')+1;
+            ind=temp.body.innerText.indexOf('Atenção')-1;
           else {
             ind=temp.body.innerText.indexOf('Sua');
             titulo= temp.body.innerText.substring(temp.body.innerText.indexOf('Reserva'),ind-1);
@@ -109,19 +109,12 @@ else
 .controller('pendentesCtrl', ['$scope', '$stateParams', '$http', // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams, $http) {
   $scope.existeRef= false;
-<<<<<<< HEAD
-  $scope.changeCartao= function(){
-    $scope.refeicoes= [];
-    $scope.existeRef= false;
-    if ($scope.numCartao.length>0)
-=======
   $scope.loadPend=false;
   $scope.changeCartao= function(){
     $scope.refeicoes= [];
     $scope.existeRef= false;
     $scope.loadPend= true;
     if ($scope.numCartao.length>0&&$scope.numCartao!=='0')
->>>>>>> frontend
     $http({
           method: 'POST',
           url: 'https://sistemas.fc.unesp.br/ru/reserva.pesquisar.action',
@@ -149,13 +142,6 @@ function ($scope, $stateParams, $http) {
           }
           console.log($scope.refeicoes);
           }
-<<<<<<< HEAD
-
-
-    }, function myError(response) {
-        console.log("Deu ruim!")
-        });
-=======
           $scope.loadPend=false;
 
 
@@ -165,7 +151,6 @@ function ($scope, $stateParams, $http) {
         });
       else
       $scope.loadPend=false;
->>>>>>> frontend
   }
 
 }])
