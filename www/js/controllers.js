@@ -1,8 +1,8 @@
 
 angular.module('app.controllers', [])
 
-.controller('reservarCtrl', ['$scope', '$stateParams','$http', '$ionicPopup',// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $http, $ionicPopup) {
+.controller('reservarCtrl', ['$scope', '$stateParams','$http', '$ionicPopup', '$window',// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams, $http, $ionicPopup, $window) {
 $scope.today= new Date();
 $scope.today.setDate($scope.today.getDate($scope.today));
 $scope.weekFirst= new Date();
@@ -10,12 +10,19 @@ $scope.weekLast= new Date();
 $scope.weekDays= [{},{},{},{},{}];
 var DAY_IN_MILIS= 86400000;
 
-/*if (window.localstorage.getItem("requiredCpf") !== null && window.localstorage.getItem("numCartao") !== null) {
-    $scope.requiredCpf=window.localstorage.getItem("requiredCpf");
-    $scope.numCartao=window.localstorage.getItem("numCartao");
+if ($window.localStorage.getItem("loginData") !== null){
+  let loginData = JSON.parse(window.localStorage.getItem('loginData'));
+  $scope.requiredCpf=loginData.cpf;
+  $scope.numCartao=loginData.numCartao;
+  $scope.buttonLembrar= true;
+}
+/*
+if ($window.localStorage.getItem("requiredCpf") !== null && $window.localStorage.getItem("numCartao") !== null) {
+    $scope.requiredCpf=$window.localStorage.getItem("requiredCpf");
+    $scope.numCartao=$window.localStorage.getItem("numCartao");
     $scope.buttonLembrar= true;
-  }*/
-
+  }
+*/
 if($scope.today.getDay()<4||($scope.today.getDay()===4&&$scope.today.getHours()<=16))
   $scope.weekFirst.setTime($scope.today.getTime()+(8-$scope.today.getDay())*DAY_IN_MILIS);
 else
@@ -53,12 +60,19 @@ else
       $scope.$apply();
     }
     $scope.doLogin=function(){
-      /*
+
       if ($scope.buttonLembrar){
-        window.localstorage.setItem ("requiredCpf",$scope.requiredCpf);
-        window.localStorage.setItem("numCartao", $scope.numCartao);
+        let loginData = {
+          cpf: $scope.requiredCpf,
+          numCartao: $scope.numCartao
+        }
+        $window.localStorage.setItem('loginData',JSON.stringify(loginData));
+        /*
+        $window.localStorage.setItem ("requiredCpf",$scope.requiredCpf);
+        $window.localStorage.setItem("numCartao", Number($scope.numCartao));
+        */
       }
-      */
+      $scope.requiredCpf=$scope.requiredCpf.toString();
       $scope.loading = true;
       var txtCpf= $scope.requiredCpf.substr(0,3)+'.'+$scope.requiredCpf.substr(3,3)+
                   '.'+$scope.requiredCpf.substr(6,3)+'-'+$scope.requiredCpf.substr(9,2);
