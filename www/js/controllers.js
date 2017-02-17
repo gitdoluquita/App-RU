@@ -9,6 +9,7 @@ $scope.weekFirst= new Date();
 $scope.weekLast= new Date();
 $scope.weekDays= [{},{},{},{},{}];
 var DAY_IN_MILIS= 86400000;
+console.log($scope.today.getTimezoneOffset());
 
 if ($window.localStorage.getItem("loginData") !== null){
   let loginData = JSON.parse(window.localStorage.getItem('loginData'));
@@ -28,11 +29,12 @@ if($scope.today.getDay()<4||($scope.today.getDay()===4&&$scope.today.getHours()<
 else
   $scope.weekFirst.setTime($scope.today.getTime()+(15-$scope.today.getDay())*DAY_IN_MILIS);
 
- $scope.weekFirst.setHours(7);
+ $scope.weekFirst.setHours(7+($scope.today.getTimezoneOffset()-$scope.weekFirst.getTimezoneOffset())/60);
  $scope.weekFirst.setMinutes(30);
  $scope.weekFirst.setSeconds(0);
  $scope.weekLast.setTime($scope.weekFirst.getTime()+(4*DAY_IN_MILIS));
  $scope.timeLeft=($scope.weekFirst.getTime()-$scope.today.getTime()-(7*DAY_IN_MILIS))/1000;
+ console.log($scope.weekFirst.getTimezoneOffset());
  //$scope.timeLeft=15;
  for(i=0;i<5;i++){
    $scope.weekDays[i].date=new Date();
