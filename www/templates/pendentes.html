@@ -1,11 +1,11 @@
 <ion-view style="background-color: #2a3d54;" class=" " id="page3" title="Pendentes">
   <ion-nav-bar class="bar-positive">
   </ion-nav-bar>
-    <ion-content class="has-header" scroll="false" padding="true" ng-controller="pendentesCtrl" >
+    <ion-content class="has-header" scroll="true" padding="true" ng-controller="pendentesCtrl" >
       <div class="list list-inset">
         <label class="item item-input">
           <i class="icon ion-card placeholder-icon"></i>
-          <input type="text" ng-model="numCartao" ng-change="changeCartao()" placeholder="Número do Cartão" >
+          <input type="number" ng-model="numCartao" ng-change="changeCartao()" placeholder="Número do Cartão" >
         </label>
       </div>
 
