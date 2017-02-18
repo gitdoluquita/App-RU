@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.ionicframework.ru434187" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>RU Unesp - Bauru</name>
+<widget id="br.com.ltia.appru" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>BauRU</name>
     <description>
-        Aplicativo para reservas de refeição no restaurante universitário UNESP - Bauru.
+        Aplicativo para reservas de refeição no restaurante universitário de Bauru.
     </description>
     <author email="lucc_70@hotmail.com" href="https://github.com/luccasqdrs">
       Luccas Quadros
