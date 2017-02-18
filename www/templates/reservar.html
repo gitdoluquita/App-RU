@@ -1,7 +1,7 @@
 <ion-view style="background-color: #2a3d54;" class=" " id="page2" title="Reservar">
   <ion-nav-bar class="bar-positive">
   </ion-nav-bar>
-    <ion-content class="has-header" scroll="false" padding="true" ng-controller="reservarCtrl" >
+    <ion-content class="has-header" scroll="true" padding="true" ng-controller="reservarCtrl" >
         <h5 class=" " style="color: #ffffff" id="reservar-heading1">Semana do dia {{weekFirst| date:'dd/MM'}} a {{weekLast| date:'dd/MM'}}:</h5>
         <div class=" button-bar " id="reservar-button-bar1">
             <button ng-click="selectDay(0)" class=" button {{weekDays[0].dClass}}  button-block" id="reservar-button-seg">S</button>

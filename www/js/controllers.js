@@ -128,44 +128,48 @@ function ($scope, $stateParams, $http) {
     $scope.refeicoes= [];
     $scope.existeRef= false;
     $scope.loadPend= true;
-    if ($scope.numCartao.length>0&&$scope.numCartao!=='0')
-    $http({
-          method: 'POST',
-          url: 'https://sistemas.fc.unesp.br/ru/reserva.pesquisar.action',
-          headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'Content-Length': '15'
-          },
-          data:   'txt_cartao='+$scope.numCartao
+    if($scope.numCartao!=null&&$scope.numCartao!=0){
+        $scope.numCartao=$scope.numCartao.toString();
+        console.log($scope.numCartao);
+        $http({
+              method: 'POST',
+              url: 'https://sistemas.fc.unesp.br/ru/reserva.pesquisar.action',
+              headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Content-Length': '15'
+              },
+              data:   'txt_cartao='+$scope.numCartao
 
-    }).then(function mySucces(response) {
-        let temp = document.implementation.createHTMLDocument();
-        temp.body.innerHTML = response.data;
-        var resultext = temp.body.innerText.substr(temp.body.innerText.indexOf('DataValor')+9).trim();
-        console.log(resultext+"FIM");
-        if(resultext.length!=0){
-          console.log("String não vazia");
-          $scope.existeRef= true;
-          let sbString;
-          let cont=0;
-          while(sbString=resultext.substr(cont*17,17)){
-            console.log("Entrou no while");
-            let quebrado= sbString.split("R$");
-            $scope.refeicoes.push({dia:quebrado[0],valor:quebrado[1]});
-            cont++;
-          }
-          console.log($scope.refeicoes);
-          }
-          $scope.loadPend=false;
+        }).then(function mySucces(response) {
+            let temp = document.implementation.createHTMLDocument();
+            temp.body.innerHTML = response.data;
+            var resultext = temp.body.innerText.substr(temp.body.innerText.indexOf('DataValor')+9).trim();
+            console.log(resultext+"FIM");
+            if(resultext.length!=0){
+              console.log("String não vazia");
+              $scope.existeRef= true;
+              let sbString;
+              let cont=0;
+              while(sbString=resultext.substr(cont*17,17)){
+                console.log("Entrou no while");
+                let quebrado= sbString.split("R$");
+                $scope.refeicoes.push({dia:quebrado[0],valor:quebrado[1]});
+                cont++;
+              }
+              console.log($scope.refeicoes);
+              }
+              $scope.loadPend=false;
 
 
-    }, function myError(response) {
-        console.log("Deu ruim!");
-        $scope.loadPend=false;
-        });
-      else
-      $scope.loadPend=false;
+          }, function myError(response) {
+              console.log("Deu ruim!");
+              $scope.loadPend=false;
+              });
+    }
+    else
+    $scope.loadPend=false;
   }
+
 
 }])
 
