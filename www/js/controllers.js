@@ -72,7 +72,7 @@ else
         $window.localStorage.setItem("numCartao", Number($scope.numCartao));
         */
       }
-      $scope.requiredCpf=$scope.requiredCpf.toString();
+      //$scope.requiredCpf=$scope.requiredCpf.toString();
       $scope.loading = true;
       var txtCpf= $scope.requiredCpf.substr(0,3)+'.'+$scope.requiredCpf.substr(3,3)+
                   '.'+$scope.requiredCpf.substr(6,3)+'-'+$scope.requiredCpf.substr(9,2);
